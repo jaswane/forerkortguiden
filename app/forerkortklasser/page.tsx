@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/content/Breadcrumbs";
-import { CardGrid } from "@/components/content/Card";
 import { Faq } from "@/components/content/Faq";
-import { InfoBox } from "@/components/content/Boxes";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { licenseClasses } from "@/data/licenseClasses";
+import { getLicenseClass, licenseClasses } from "@/data/licenseClasses";
 import { buildMetadata } from "@/lib/metadata";
 import { routes } from "@/lib/routes";
 import { itemListSchema } from "@/lib/schema";
@@ -15,6 +13,32 @@ export const metadata = buildMetadata({
     "Oversikt over alle vanlige førerkortklasser i Norge: B, B96, BE, AM, A1, A2, A, C1, C og T. Se alderskrav og hva hver klasse gir rett til å kjøre.",
   path: routes.klasser,
 });
+
+const classGroups: { title: string; intro: string; slugs: string[] }[] = [
+  {
+    title: "Bil og tilhenger",
+    intro:
+      "Klasse B er det vanlige bilførerkortet. B96 og BE er utvidelser for deg som skal trekke tyngre tilhenger.",
+    slugs: ["klasse-b", "klasse-b96", "klasse-be"],
+  },
+  {
+    title: "Moped og motorsykkel",
+    intro:
+      "Tohjulingene er delt etter alder og motorstørrelse – fra moped ved 16 år til tung motorsykkel ved 24 (eller 20 via A2).",
+    slugs: ["klasse-am", "klasse-a1", "klasse-a2", "klasse-a"],
+  },
+  {
+    title: "Tunge kjøretøy",
+    intro:
+      "Lastebilklassene bygger på klasse B og krever helseattest. Yrkeskjøring krever i tillegg YSK.",
+    slugs: ["klasse-c1", "klasse-c"],
+  },
+  {
+    title: "Traktor",
+    intro: "Klasse T gjelder traktor og motorredskap, og kan tas fra 16 år.",
+    slugs: ["klasse-t"],
+  },
+];
 
 const hubFaq = [
   {
@@ -40,57 +64,54 @@ export default function KlasserPage() {
       <Breadcrumbs crumbs={[{ name: "Førerkortklasser", path: routes.klasser }]} />
       <h1>Førerkortklasser i Norge</h1>
       <p className="lead">
-        Hver førerkortklasse gir rett til å kjøre bestemte kjøretøy. Her finner du
-        oversikten – med alderskrav og hva hver klasse dekker – slik at du raskt ser
-        hvilken klasse du bør lese mer om.
+        Hver klasse gir rett til å kjøre bestemte kjøretøy. Oversikten er gruppert etter
+        hva du skal kjøre – med alderskrav og det viktigste hver klasse dekker.
       </p>
 
-      <InfoBox title="Usikker på hvilken klasse du trenger?">
+      <div className="cta-panel no-print">
         <p>
-          Prøv verktøyet{" "}
-          <Link href={routes.verktoyItem("hvilket-forerkort-trenger-jeg")}>
-            «Hvilket førerkort trenger jeg?»
-          </Link>{" "}
-          – svar på noen få spørsmål og få pekt ut riktig klasse.
+          <strong>Usikker på hvilken klasse du trenger?</strong>
+          Svar på noen få spørsmål om hva du skal kjøre.
         </p>
-      </InfoBox>
-
-      <div className="table-wrap">
-        <table>
-          <caption>Førerkortklassene i oversikt</caption>
-          <thead>
-            <tr>
-              <th scope="col">Klasse</th>
-              <th scope="col">Gjelder</th>
-              <th scope="col">Alderskrav</th>
-            </tr>
-          </thead>
-          <tbody>
-            {licenseClasses.map((klass) => (
-              <tr key={klass.slug}>
-                <th scope="row">
-                  <Link href={routes.klasse(klass.slug)}>{klass.code}</Link>
-                </th>
-                <td>{klass.tableFacts.vehicles}</td>
-                <td>{klass.tableFacts.age}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Link
+          className="btn btn--primary"
+          href={routes.verktoyItem("hvilket-forerkort-trenger-jeg")}
+        >
+          Finn riktig klasse
+        </Link>
       </div>
-      <p className="text-muted">
-        Tabellen er forenklet. Se hver klasseside for begrensninger og detaljer, og
-        kontroller alltid gjeldende regler hos Statens vegvesen.
-      </p>
 
-      <h2>Alle klassesidene</h2>
-      <CardGrid
-        items={licenseClasses.map((klass) => ({
-          title: `Klasse ${klass.code} – ${klass.name}`,
-          href: routes.klasse(klass.slug),
-          description: klass.cardSummary,
-        }))}
-      />
+      {classGroups.map((group) => (
+        <section className="class-group" key={group.title}>
+          <h2>{group.title}</h2>
+          <p className="class-group__intro">{group.intro}</p>
+          <ul className="class-rows">
+            {group.slugs.map((slug) => {
+              const klass = getLicenseClass(slug);
+              if (!klass) return null;
+              return (
+                <li key={slug}>
+                  <Link href={routes.klasse(slug)}>
+                    <span className="class-code">{klass.code}</span>
+                    <span className="class-rows__name">
+                      <strong>{klass.name}</strong>
+                      <span>{klass.tableFacts.vehicles}</span>
+                    </span>
+                    <span className="class-rows__age">Fra {klass.tableFacts.age}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
+
+      <p className="text-muted" style={{ marginTop: "1.25rem" }}>
+        Oversikten er forenklet. Hver klasseside beskriver begrensninger og veien til
+        klassen – og kontroller alltid gjeldende regler hos Statens vegvesen. Skal du
+        kjøre tohjuling, se også{" "}
+        <Link href={routes.motorsykkelOgMoped}>motorsykkel- og mopedoversikten</Link>.
+      </p>
 
       <Faq items={hubFaq} />
 

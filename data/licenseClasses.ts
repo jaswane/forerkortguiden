@@ -13,6 +13,8 @@ export type LicenseClass = {
   metaTitle: string;
   metaDescription: string;
   minAge: string;
+  /** Kort kontekst-hint øverst på siden, f.eks. hvor tilhengerutvidelsene passer inn. */
+  heroHint?: { text: string; links: LinkItem[] };
   /** Avsnitt i «Kort forklart»-boksen. Svaret først. */
   shortAnswer: string[];
   /** Hva føreretten omfatter. */
@@ -47,6 +49,14 @@ export const licenseClasses: LicenseClass[] = [
     metaDescription:
       "Klasse B gjelder personbil med tillatt totalvekt opptil 3 500 kg. Se alderskrav, hva du kan kjøre, tilhengerregler og veien fra trafikalt grunnkurs til oppkjøring.",
     minAge: "18 år (øvelseskjøring fra 16 år)",
+    heroHint: {
+      text: "Skal du trekke tyngre tilhenger enn klasse B tillater, finnes to utvidelser:",
+      links: [
+        { label: "Se klasse B96", href: routes.klasse("klasse-b96") },
+        { label: "Se klasse BE", href: routes.klasse("klasse-be") },
+        { label: "Sjekk tilhengerreglene", href: routes.tilhenger },
+      ],
+    },
     shortAnswer: [
       "Klasse B er det vanlige førerkortet for personbil. Du kan kjøre bil med tillatt totalvekt opptil 3 500 kg og med plass til maks 8 passasjerer i tillegg til føreren.",
       "Du må være 18 år for å få førerkortet, og du kan starte øvelseskjøring fra du er 16 år etter gjennomført trafikalt grunnkurs.",
@@ -160,6 +170,13 @@ export const licenseClasses: LicenseClass[] = [
     metaDescription:
       "B96 utvider klasse B slik at bil og tilhenger til sammen kan ha tillatt totalvekt opptil 4 250 kg. Kun obligatorisk kurs – ingen egen prøve. Se krav og forskjellen mot BE.",
     minAge: "18 år",
+    heroHint: {
+      text: "B96 er den enkleste tilhengerutvidelsen. Trenger du å trekke tyngre enn 4 250 kg samlet:",
+      links: [
+        { label: "Se klasse BE", href: routes.klasse("klasse-be") },
+        { label: "Sjekk tilhengerreglene", href: routes.tilhenger },
+      ],
+    },
     shortAnswer: [
       "B96 er en utvidelse av klasse B som lar deg kjøre bil og tilhenger med samlet tillatt totalvekt opptil 4 250 kg.",
       "Du trenger ikke egen oppkjøring – bare et obligatorisk kurs på trafikkskole på minst 7 undervisningstimer.",
@@ -243,6 +260,13 @@ export const licenseClasses: LicenseClass[] = [
     metaDescription:
       "Klasse BE lar deg trekke tilhenger med tillatt totalvekt opptil 3 500 kg etter bil i klasse B. Se krav om lastsikringskurs og praktisk prøve, og forskjellen mot B96.",
     minAge: "18 år",
+    heroHint: {
+      text: "BE er den største tilhengerutvidelsen for personbil. Holder det med 4 250 kg samlet, er B96 raskere å skaffe:",
+      links: [
+        { label: "Se klasse B96", href: routes.klasse("klasse-b96") },
+        { label: "Sjekk tilhengerreglene", href: routes.tilhenger },
+      ],
+    },
     shortAnswer: [
       "Klasse BE lar deg kjøre bil i klasse B med tilhenger med tillatt totalvekt opptil 3 500 kg.",
       "Du må ha klasse B fra før, gjennomføre obligatorisk lastsikringskurs og bestå en praktisk prøve. Det er ingen egen teoriprøve for BE.",

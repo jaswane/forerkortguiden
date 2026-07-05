@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CardGrid } from "@/components/content/Card";
 import { InfoBox } from "@/components/content/Boxes";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { guides } from "@/data/guides";
@@ -17,42 +16,36 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
-const popularTasks = [
+const intents = [
   {
-    title: "Hvilket førerkort trenger jeg?",
-    href: routes.verktoyItem("hvilket-forerkort-trenger-jeg"),
-    description: "Svar på noen få spørsmål og få pekt ut riktig klasse.",
-    meta: "Verktøy",
+    task: "Jeg skal ta billappen",
+    hint: "Hele løpet fra trafikalt grunnkurs til oppkjøring",
+    href: routes.taForerkort,
   },
   {
-    title: "Ta førerkort klasse B",
-    href: routes.klasse("klasse-b"),
-    description: "Alderskrav, hva du kan kjøre og veien fra grunnkurs til oppkjøring.",
-    meta: "Personbil",
-  },
-  {
-    title: "Hva koster førerkortet?",
-    href: routes.kostnad,
-    description: "Kostnadene som inngår, hva som påvirker prisen og hvordan du kan spare.",
-    meta: "Kostnad",
-  },
-  {
-    title: "Kan jeg trekke denne tilhengeren?",
-    href: routes.tilhenger,
-    description: "Vektgrensene for B, B96 og BE forklart – med kalkulator.",
-    meta: "Tilhenger",
-  },
-  {
-    title: "Øvelseskjøring – reglene",
+    task: "Jeg skal øvelseskjøre",
+    hint: "Kravene til deg, ledsageren og bilen",
     href: routes.ovelseskjoring,
-    description: "Krav til deg, ledsageren og bilen før du kan øve privat.",
-    meta: "Øvelseskjøring",
   },
   {
-    title: "Teoriprøven",
-    href: routes.teoriprove,
-    description: "Slik fungerer prøven, når du kan ta den og hvordan du forbereder deg.",
-    meta: "Teoriprøve",
+    task: "Jeg skal kjøre med tilhenger",
+    hint: "Vektgrensene for B, B96 og BE – med kalkulator",
+    href: routes.tilhenger,
+  },
+  {
+    task: "Jeg lurer på hva det koster",
+    hint: "Kostnadspostene forklart, og hvor du kan spare",
+    href: routes.kostnad,
+  },
+  {
+    task: "Jeg vet ikke hvilken klasse jeg trenger",
+    hint: "Svar på noen få spørsmål og få pekt ut riktig klasse",
+    href: routes.verktoyItem("hvilket-forerkort-trenger-jeg"),
+  },
+  {
+    task: "Jeg er forelder eller ledsager",
+    hint: "Kravene til ledsager og bil, med utskriftsvennlig sjekkliste",
+    href: routes.verktoyItem("ovelseskjoring-sjekkliste"),
   },
 ];
 
@@ -76,21 +69,37 @@ export default function HomePage() {
               className="btn btn--primary"
               href={routes.verktoyItem("hvilket-forerkort-trenger-jeg")}
             >
-              Hvilket førerkort trenger jeg?
+              Finn riktig klasse
             </Link>
             <Link className="btn btn--secondary" href={routes.taForerkort}>
-              Slik tar du førerkortet
+              Se veien til billappen
             </Link>
           </div>
         </div>
       </section>
 
       <div className="container page">
-        <section aria-labelledby="oppgaver">
-          <h2 id="oppgaver" style={{ marginTop: 0 }}>
-            Hva lurer du på?
-          </h2>
-          <CardGrid items={popularTasks} />
+        <section aria-labelledby="intensjoner" style={{ marginTop: 0 }}>
+          <div className="intent">
+            <div className="intent__head">
+              <h2 id="intensjoner">Hva prøver du å finne ut?</h2>
+            </div>
+            <ul className="intent__grid">
+              {intents.map((intent) => (
+                <li key={intent.href + intent.task}>
+                  <Link href={intent.href}>
+                    <span>
+                      <span className="intent__task">{intent.task}</span>
+                      <span className="intent__hint">{intent.hint}</span>
+                    </span>
+                    <span className="intent__arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
 
         <section className="section" aria-labelledby="klasser">
@@ -98,7 +107,8 @@ export default function HomePage() {
           <p className="prose">
             Norge har egne førerkortklasser for bil, moped, motorsykkel, lastebil og
             traktor. Her er de vanligste – se{" "}
-            <Link href={routes.klasser}>alle klassene</Link> for full oversikt.
+            <Link href={routes.klasser}>hele klasseoversikten</Link> gruppert etter
+            kjøretøytype.
           </p>
           <div className="table-wrap">
             <table>
@@ -127,27 +137,32 @@ export default function HomePage() {
         <section className="section" aria-labelledby="verktoy">
           <h2 id="verktoy">Praktiske verktøy</h2>
           <p className="prose">
-            Enkle verktøy som hjelper deg videre – uten innlogging og uten at noe lagres
+            Enkle verktøy som hjelper deg videre – uten innlogging, og uten at noe lagres
             hos oss.
           </p>
-          <CardGrid
-            items={tools.map((tool) => ({
-              title: tool.cardTitle,
-              href: tool.href,
-              description: tool.description,
-            }))}
-          />
+          <ul className="link-list">
+            {tools.map((tool) => (
+              <li key={tool.slug}>
+                <Link href={tool.href}>{tool.cta}</Link>{" "}
+                <span>– {tool.helps.toLowerCase()}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-muted">
+            <Link href={routes.verktoy}>Se alle verktøyene samlet</Link>
+          </p>
         </section>
 
         <section className="section" aria-labelledby="guider">
-          <h2 id="guider">Guider</h2>
-          <CardGrid
-            items={guides.map((guide) => ({
-              title: guide.cardTitle,
-              href: guide.href,
-              description: guide.description,
-            }))}
-          />
+          <h2 id="guider">Guider for vanskelige valg</h2>
+          <ul className="link-list">
+            {guides.map((guide) => (
+              <li key={guide.slug}>
+                <Link href={guide.href}>{guide.title}</Link>{" "}
+                <span>– {guide.description}</span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="section prose" aria-labelledby="ordliste">

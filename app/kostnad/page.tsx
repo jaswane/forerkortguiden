@@ -159,9 +159,9 @@ export default function KostnadPage() {
       <NextSteps
         steps={[
           {
-            label: "Kostnadskalkulator",
+            label: "Beregn cirka kostnad",
             href: routes.verktoyItem("kostnadskalkulator"),
-            description: "estimer totalen med dine egne tall",
+            description: "kalkulator med dine egne tall",
           },
           { label: "Hele førerkortløpet", href: routes.taForerkort },
           { label: "Guide: hvordan velge trafikkskole", href: routes.guide("hvordan-velge-trafikkskole") },

@@ -980,6 +980,462 @@ fieldset.field {
   transition: width 0.25s ease;
 }
 
+/* ---------- Intensjonspanel (forsiden) ---------- */
+
+.intent {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.intent__head {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-soft);
+}
+
+.intent__head h2 {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.intent__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 700px) {
+  .intent__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.intent__grid li {
+  margin: 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+@media (min-width: 700px) {
+  .intent__grid li:nth-child(odd) {
+    border-right: 1px solid var(--color-border-soft);
+  }
+  .intent__grid li:nth-last-child(-n + 1) {
+    border-bottom: none;
+  }
+}
+
+.intent__grid li:last-child {
+  border-bottom: none;
+}
+
+.intent__grid a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  text-decoration: none;
+  color: var(--color-ink);
+  border-left: 3px solid transparent;
+}
+
+.intent__grid a:hover {
+  background: var(--color-primary-soft);
+  border-left-color: var(--color-primary);
+  color: var(--color-ink);
+}
+
+.intent__task {
+  font-weight: 600;
+  display: block;
+}
+
+.intent__hint {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-ink-faint);
+  font-weight: 400;
+  margin-top: 0.1rem;
+}
+
+.intent__arrow {
+  color: var(--color-primary);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ---------- Klassereferanse (grupperte rader) ---------- */
+
+.class-group {
+  margin: 2.25rem 0 0;
+}
+
+.class-group > h2 {
+  margin-bottom: 0.25rem;
+}
+
+.class-group__intro {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+  margin-bottom: 0.75rem;
+  max-width: var(--container-text);
+}
+
+.class-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.class-rows li {
+  margin: 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.class-rows li:last-child {
+  border-bottom: none;
+}
+
+.class-rows a {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0.35rem 1rem;
+  align-items: center;
+  padding: 0.8rem 1.1rem;
+  text-decoration: none;
+  color: var(--color-ink);
+}
+
+@media (min-width: 700px) {
+  .class-rows a {
+    grid-template-columns: 3.4rem 1fr 11rem;
+  }
+}
+
+.class-rows a:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-ink);
+}
+
+.class-rows a:hover .class-rows__name strong {
+  color: var(--color-primary-dark);
+}
+
+.class-code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  grid-row: span 2;
+}
+
+@media (min-width: 700px) {
+  .class-code {
+    grid-row: auto;
+  }
+}
+
+.class-rows__name strong {
+  display: block;
+  font-weight: 600;
+}
+
+.class-rows__name span {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.class-rows__age {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+@media (min-width: 700px) {
+  .class-rows__age {
+    text-align: right;
+  }
+}
+
+/* ---------- Faktastripe (klassesider) ---------- */
+
+.fact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  margin: 1.25rem 0;
+  max-width: var(--container-text);
+  overflow: hidden;
+}
+
+.fact-strip > div {
+  flex: 1 1 12rem;
+  padding: 0.7rem 1.1rem;
+  border-right: 1px solid var(--color-border-soft);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.fact-strip > div:last-child {
+  border-right: none;
+}
+
+.fact-strip dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-faint);
+  margin: 0;
+}
+
+.fact-strip dd {
+  margin: 0.1rem 0 0;
+  font-size: var(--text-sm);
+  font-weight: 550;
+  color: var(--color-ink);
+}
+
+/* ---------- Sammenligningspaneler (tilhenger) ---------- */
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 820px) {
+  .compare {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.compare__panel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.compare__head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.1rem;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.compare__head .class-code {
+  min-width: 3rem;
+}
+
+.compare__head span {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.compare__figure {
+  padding: 0.9rem 1.1rem 0.2rem;
+}
+
+.compare__figure strong {
+  display: block;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.compare__figure span {
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.compare__rows {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.compare__rows li {
+  display: block;
+  margin: 0;
+  padding: 0.55rem 1.1rem;
+  border-top: 1px solid var(--color-border-soft);
+  font-size: var(--text-sm);
+}
+
+.compare__rows li strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-faint);
+}
+
+.compare__link {
+  display: block;
+  padding: 0.7rem 1.1rem;
+  border-top: 1px solid var(--color-border-soft);
+  font-size: var(--text-sm);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.compare__link:hover {
+  background: var(--color-primary-soft);
+}
+
+/* ---------- CTA-panel (nøkternt) ---------- */
+
+.cta-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  border: 1px solid var(--color-primary-border);
+  border-left: 3px solid var(--color-primary);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  max-width: var(--container-text);
+}
+
+.cta-panel p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.cta-panel p strong {
+  display: block;
+  font-size: var(--text-base);
+  color: var(--color-ink);
+}
+
+/* ---------- Verktøypaneler ---------- */
+
+.tool-panels {
+  list-style: none;
+  margin: 1.5rem 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.tool-panels > li {
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  padding: 1.1rem 1.25rem;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 0.25rem 1rem;
+}
+
+@media (min-width: 700px) {
+  .tool-panels > li {
+    grid-template-columns: 2.4rem 1fr auto;
+    align-items: center;
+  }
+}
+
+.tool-panels__icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-row: span 2;
+}
+
+@media (min-width: 700px) {
+  .tool-panels__icon {
+    grid-row: auto;
+  }
+}
+
+.tool-panels h2,
+.tool-panels h3 {
+  margin: 0;
+  font-size: var(--text-md);
+}
+
+.tool-panels__body p {
+  margin: 0.15rem 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.tool-panels__body .use-when {
+  color: var(--color-ink-faint);
+}
+
+.tool-panels__cta {
+  grid-column: 2;
+  margin-top: 0.6rem;
+}
+
+@media (min-width: 700px) {
+  .tool-panels__cta {
+    grid-column: auto;
+    margin-top: 0;
+  }
+}
+
+/* ---------- Beskrivende lenkeliste ---------- */
+
+.link-list {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+  max-width: var(--container-text);
+}
+
+.link-list li {
+  margin: 0;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.link-list li:last-child {
+  border-bottom: none;
+}
+
+.link-list a {
+  font-weight: 550;
+}
+
+.link-list span {
+  color: var(--color-ink-soft);
+  font-size: var(--text-sm);
+}
+
 /* ---------- Diverse ---------- */
 
 .badge {

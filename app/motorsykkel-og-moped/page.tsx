@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/content/Breadcrumbs";
-import { CardGrid } from "@/components/content/Card";
 import { Faq } from "@/components/content/Faq";
 import { NextSteps } from "@/components/content/NextSteps";
 import { ShortAnswer } from "@/components/content/Boxes";
@@ -82,15 +81,21 @@ export default function MotorsykkelOgMopedPage() {
         </table>
       </div>
 
-      <h2>Les mer om hver klasse</h2>
-      <CardGrid
-        items={mcClasses.map((klass) => ({
-          title: `Klasse ${klass.code} – ${klass.name}`,
-          href: routes.klasse(klass.slug),
-          description: klass.cardSummary,
-        }))}
-        columns={2}
-      />
+      <h2>Klassene i detalj</h2>
+      <ul className="class-rows">
+        {mcClasses.map((klass) => (
+          <li key={klass.slug}>
+            <Link href={routes.klasse(klass.slug)}>
+              <span className="class-code">{klass.code}</span>
+              <span className="class-rows__name">
+                <strong>{klass.name}</strong>
+                <span>{klass.cardSummary}</span>
+              </span>
+              <span className="class-rows__age">Fra {klass.tableFacts.age}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
 
       <section className="prose">
         <h2>Trappemodellen: fra A1 til A</h2>

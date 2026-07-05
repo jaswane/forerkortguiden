@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/content/Breadcrumbs";
 import { Faq } from "@/components/content/Faq";
@@ -44,10 +45,34 @@ export default async function KlassePage({
           { name: `Klasse ${klass.code}`, path: routes.klasse(klass.slug) },
         ]}
       />
-      <p>
-        <span className="badge">Alderskrav: {klass.minAge}</span>
-      </p>
       <h1>{klass.title}</h1>
+
+      <dl className="fact-strip">
+        <div>
+          <dt>Alderskrav</dt>
+          <dd>{klass.minAge}</dd>
+        </div>
+        <div>
+          <dt>Gjelder</dt>
+          <dd>{klass.tableFacts.vehicles}</dd>
+        </div>
+        <div>
+          <dt>Veien dit</dt>
+          <dd>{klass.process.length} steg – se under</dd>
+        </div>
+      </dl>
+
+      {klass.heroHint ? (
+        <p className="prose">
+          {klass.heroHint.text}{" "}
+          {klass.heroHint.links.map((link, i) => (
+            <span key={link.href}>
+              {i > 0 ? " · " : ""}
+              <Link href={link.href}>{link.label}</Link>
+            </span>
+          ))}
+        </p>
+      ) : null}
 
       <ShortAnswer>
         {klass.shortAnswer.map((paragraph) => (
@@ -98,7 +123,7 @@ export default async function KlassePage({
         </section>
       ) : null}
 
-      <NextSteps steps={klass.nextSteps} />
+      <NextSteps steps={klass.nextSteps} title="Neste steg for deg" />
       <Faq items={klass.faq} />
       <RelatedLinks links={klass.related} />
       <SourceBox sourceIds={klass.sources} caveat={klass.caveat} />
