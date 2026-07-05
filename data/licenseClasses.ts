@@ -122,6 +122,10 @@ export const licenseClasses: LicenseClass[] = [
       { label: "Klasse BE – bil med stor tilhenger", href: routes.klasse("klasse-be") },
       { label: "Bil og tilhenger – reglene forklart", href: routes.tilhenger },
       { label: "Hva koster førerkortet?", href: routes.kostnad },
+      {
+        label: "Veien til lappen – interaktiv sjekkliste",
+        href: routes.verktoyItem("veien-til-lappen"),
+      },
     ],
     nextSteps: [
       {
@@ -131,6 +135,8 @@ export const licenseClasses: LicenseClass[] = [
       },
       { label: "Trafikalt grunnkurs", href: routes.trafikaltGrunnkurs },
       { label: "Øvelseskjøring – regler og tips", href: routes.ovelseskjoring },
+      { label: "Teoriprøven – slik fungerer den", href: routes.teoriprove },
+      { label: "Oppkjøring – slik foregår praktisk prøve", href: routes.oppkjoring },
       {
         label: "Kostnadskalkulator",
         href: routes.verktoyItem("kostnadskalkulator"),

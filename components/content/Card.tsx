@@ -24,9 +24,6 @@ export function CardGrid({
             <Link href={item.href}>{item.title}</Link>
           </h3>
           <p>{item.description}</p>
-          <span className="card__more" aria-hidden="true">
-            Les mer →
-          </span>
         </li>
       ))}
     </ul>

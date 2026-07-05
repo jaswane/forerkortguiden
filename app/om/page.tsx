@@ -1,11 +1,6 @@
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/content/Breadcrumbs";
-import {
-  CONTACT_EMAIL,
-  INDEPENDENCE_NOTE,
-  OWNER_NAME,
-  OWNER_URL,
-  SITE_NAME,
-} from "@/lib/constants";
+import { INDEPENDENCE_NOTE, OWNER_NAME, OWNER_URL, SITE_NAME } from "@/lib/constants";
 import { buildMetadata } from "@/lib/metadata";
 import { routes } from "@/lib/routes";
 
@@ -58,8 +53,8 @@ export default function OmPage() {
           <a href={OWNER_URL} rel="noopener">
             {OWNER_NAME}
           </a>
-          . Har du innspill, funnet en feil, eller ønsker du å samarbeide? Send en e-post
-          til <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> – vi leser alt.
+          . Har du innspill, funnet en feil, eller ønsker du å samarbeide? Se{" "}
+          <Link href={routes.kontakt}>kontaktsiden</Link> – vi leser alt.
         </p>
       </div>
     </div>

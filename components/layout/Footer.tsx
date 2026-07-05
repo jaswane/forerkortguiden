@@ -1,12 +1,7 @@
 import Link from "next/link";
-import {
-  CONTACT_EMAIL,
-  INDEPENDENCE_NOTE,
-  OWNER_NAME,
-  OWNER_URL,
-  SITE_NAME,
-} from "@/lib/constants";
+import { INDEPENDENCE_NOTE, OWNER_NAME, OWNER_URL, SITE_NAME } from "@/lib/constants";
 import { footerNav } from "@/data/navigation";
+import { routes } from "@/lib/routes";
 
 export function Footer() {
   return (
@@ -45,7 +40,7 @@ export function Footer() {
             </a>
           </p>
           <p>
-            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            <Link href={routes.kontakt}>Kontakt oss</Link>
           </p>
         </div>
       </div>
