@@ -1,6 +1,15 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { InfoBox } from "@/components/content/Boxes";
 import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  CompanionsIcon,
+  LicenceIcon,
+  LPlateIcon,
+  PriceTagIcon,
+  QuestionIcon,
+  TrailerIcon,
+} from "@/components/ui/icons";
 import { guides } from "@/data/guides";
 import { licenseClasses } from "@/data/licenseClasses";
 import { synonyms } from "@/data/synonyms";
@@ -16,36 +25,42 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
-const intents = [
+const intents: { task: string; hint: string; href: string; icon: ReactNode }[] = [
   {
     task: "Jeg skal ta billappen",
     hint: "Hele løpet fra trafikalt grunnkurs til oppkjøring",
     href: routes.taForerkort,
+    icon: LicenceIcon,
   },
   {
     task: "Jeg skal øvelseskjøre",
     hint: "Kravene til deg, ledsageren og bilen",
     href: routes.ovelseskjoring,
+    icon: LPlateIcon,
   },
   {
     task: "Jeg skal kjøre med tilhenger",
     hint: "Vektgrensene for B, B96 og BE – med kalkulator",
     href: routes.tilhenger,
+    icon: TrailerIcon,
   },
   {
     task: "Jeg lurer på hva det koster",
     hint: "Kostnadspostene forklart, og hvor du kan spare",
     href: routes.kostnad,
+    icon: PriceTagIcon,
   },
   {
     task: "Jeg vet ikke hvilken klasse jeg trenger",
     hint: "Svar på noen få spørsmål og få pekt ut riktig klasse",
     href: routes.verktoyItem("hvilket-forerkort-trenger-jeg"),
+    icon: QuestionIcon,
   },
   {
     task: "Jeg er forelder eller ledsager",
     hint: "Kravene til ledsager og bil, med utskriftsvennlig sjekkliste",
     href: routes.verktoyItem("ovelseskjoring-sjekkliste"),
+    icon: CompanionsIcon,
   },
 ];
 
@@ -88,6 +103,9 @@ export default function HomePage() {
               {intents.map((intent) => (
                 <li key={intent.href + intent.task}>
                   <Link href={intent.href}>
+                    <span className="intent__icon" aria-hidden="true">
+                      {intent.icon}
+                    </span>
                     <span>
                       <span className="intent__task">{intent.task}</span>
                       <span className="intent__hint">{intent.hint}</span>

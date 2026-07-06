@@ -57,9 +57,9 @@ export default function B96EllerBePage() {
       <ShortAnswer>
         <p>
           Velg <strong>B96</strong> hvis bil + tilhenger aldri overstiger 4 250 kg samlet
-          tillatt totalvekt – det krever bare et kurs. Velg <strong>BE</strong> hvis du
-          skal trekke tyngre, eller vil ha fleksibilitet – det krever praktisk prøve, men
-          dekker tilhengere opptil 3 500 kg.
+          tillatt totalvekt – det krever bare obligatorisk opplæring. Velg{" "}
+          <strong>BE</strong> hvis du skal trekke tyngre, eller vil ha fleksibilitet –
+          det krever i tillegg praktisk prøve, men dekker tilhengere opptil 3 500 kg.
         </p>
       </ShortAnswer>
 
@@ -82,8 +82,8 @@ export default function B96EllerBePage() {
               </tr>
               <tr>
                 <th scope="row">Krav</th>
-                <td>Obligatorisk kurs, minst 7 undervisningstimer</td>
-                <td>Lastsikringskurs (2 timer) + praktisk prøve</td>
+                <td>Minst 7 timer obligatorisk opplæring</td>
+                <td>Minst 7 timer obligatorisk opplæring + praktisk prøve</td>
               </tr>
               <tr>
                 <th scope="row">Prøve</th>
@@ -92,7 +92,7 @@ export default function B96EllerBePage() {
               </tr>
               <tr>
                 <th scope="row">Tidsbruk</th>
-                <td>Én kursdag hos trafikkskole</td>
+                <td>Kort opplæringsløp hos trafikkskole</td>
                 <td>Opplæring + prøve, ofte over noe lengre tid</td>
               </tr>
               <tr>

@@ -34,18 +34,18 @@ const checklistItems = [
   },
   {
     id: "trinn2",
-    label: "Fullført trinn 2 med veiledningstime",
-    detail: "Grunnleggende kjøretøybehandling, avsluttes med obligatorisk veiledningstime.",
+    label: "Fullført trinn 2 med trinnvurdering",
+    detail: "Grunnleggende kjøretøybehandling, avsluttes med obligatorisk trinnvurdering.",
   },
   {
     id: "bane",
-    label: "Gjennomført sikkerhetskurs på øvingsbane",
-    detail: "Obligatorisk kurs i trinn 3 («glattkjøring»).",
+    label: "Gjennomført sikkerhetskurs på bane",
+    detail: "Obligatorisk kurs på 4 timer i trinn 3 («glattkjøring»).",
   },
   {
     id: "trinn3",
-    label: "Fullført trinn 3 med veiledningstime",
-    detail: "Kjøring i variert trafikk, avsluttes med obligatorisk veiledningstime.",
+    label: "Fullført trinn 3 med trinnvurdering",
+    detail: "Kjøring i variert trafikk, avsluttes med obligatorisk trinnvurdering.",
   },
   {
     id: "teoriprove",

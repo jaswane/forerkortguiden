@@ -26,7 +26,7 @@ const faqItems = [
   {
     question: "Trenger jeg trafikalt grunnkurs hvis jeg er over 25?",
     answer:
-      "Nei, er du over 25 år er du fritatt fra selve grunnkurset og kan øvelseskjøre med gyldig legitimasjon. Mørkekjøring er likevel en obligatorisk del av opplæringen.",
+      "Har du fylt 25 år, er du fritatt fra selve grunnkurset og kan øvelseskjøre med gyldig legitimasjon. Du må likevel ta mørkekjøring og delen om førstehjelp og plikter ved trafikkuhell.",
   },
   {
     question: "Gjelder kurset for alle førerkortklasser?",
@@ -84,9 +84,9 @@ export default function TrafikaltGrunnkursPage() {
 
       <InfoBox title="Over 25 år?">
         <p>
-          Da er du fritatt fra trafikalt grunnkurs og kan øvelseskjøre med gyldig
-          legitimasjon. Mørkekjøring er likevel obligatorisk før førerprøven, som del av
-          den øvrige opplæringen.
+          Da er du fritatt fra selve grunnkurset og kan øvelseskjøre med gyldig
+          legitimasjon. To deler må du likevel gjennomføre: mørkekjøring og kurset om
+          førstehjelp og plikter ved trafikkuhell.
         </p>
       </InfoBox>
 

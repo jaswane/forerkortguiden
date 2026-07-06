@@ -100,8 +100,8 @@ export default function KostnadPage() {
                 <td>Trafikkskolens pris</td>
               </tr>
               <tr>
-                <th scope="row">Veiledningstimer</th>
-                <td>Obligatoriske vurderingstimer i trinn 2 og 3</td>
+                <th scope="row">Trinnvurderinger</th>
+                <td>Obligatoriske vurderingstimer etter trinn 2 og 3</td>
                 <td>Trafikkskolens timepris</td>
               </tr>
               <tr>

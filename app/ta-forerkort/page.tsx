@@ -29,7 +29,7 @@ const faqItems = [
   {
     question: "Må jeg ta kjøretimer ved trafikkskole?",
     answer:
-      "Deler av opplæringen er obligatorisk og må tas ved trafikkskole, blant annet sikkerhetskurs på øvingsbane og sikkerhetskurs på veg. Utover det bestemmer du selv fordelingen mellom kjøretimer og privat øvelseskjøring.",
+      "Deler av opplæringen er obligatorisk og må tas ved trafikkskole, blant annet sikkerhetskurs på bane, sikkerhetskurs på veg og trinnvurderinger. Utover det bestemmer du selv fordelingen mellom kjøretimer og privat øvelseskjøring.",
   },
   {
     question: "Hva er riktig rekkefølge på teoriprøve og oppkjøring?",
@@ -89,12 +89,12 @@ export default function TaForerkortPage() {
             {
               title: "Grunnleggende opplæring (trinn 2)",
               description:
-                "Du lærer å beherske bilen rent kjøreteknisk. Trinnet avsluttes med en obligatorisk veiledningstime ved trafikkskole.",
+                "Du lærer å beherske bilen rent kjøreteknisk. Trinnet avsluttes med en obligatorisk trinnvurdering ved trafikkskole.",
             },
             {
               title: "Trafikal opplæring (trinn 3)",
               description:
-                "Kjøring i variert trafikk. Inkluderer obligatorisk sikkerhetskurs på øvingsbane (glattkjøring) og avsluttes med veiledningstime.",
+                "Kjøring i variert trafikk. Inkluderer obligatorisk sikkerhetskurs på bane (glattkjøring, 4 timer) og avsluttes med trinnvurdering.",
             },
             {
               title: "Teoriprøve (fra 17,5 år)",
@@ -132,9 +132,9 @@ export default function TaForerkortPage() {
 
       <InfoBox title="Over 25 år?">
         <p>
-          Da er du fritatt fra trafikalt grunnkurs, men deler av opplæringen – som
-          mørkekjøring – er fortsatt obligatorisk. Resten av løpet er likt. Sjekk
-          detaljene hos Statens vegvesen eller en trafikkskole.
+          Da er du fritatt fra trafikalt grunnkurs, men mørkekjøring og kurset om
+          førstehjelp og plikter ved trafikkuhell er fortsatt obligatorisk. Resten av
+          løpet er likt.
         </p>
       </InfoBox>
 

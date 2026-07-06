@@ -26,5 +26,10 @@ export function buildMetadata({ title, description, path }: PageMeta): Metadata 
       locale: "nb_NO",
       type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }

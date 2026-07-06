@@ -1,7 +1,14 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { Breadcrumbs } from "@/components/content/Breadcrumbs";
 import { Faq } from "@/components/content/Faq";
 import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  CarIcon,
+  MotorcycleIcon,
+  TractorIcon,
+  TruckIcon,
+} from "@/components/ui/icons";
 import { getLicenseClass, licenseClasses } from "@/data/licenseClasses";
 import { buildMetadata } from "@/lib/metadata";
 import { routes } from "@/lib/routes";
@@ -14,29 +21,33 @@ export const metadata = buildMetadata({
   path: routes.klasser,
 });
 
-const classGroups: { title: string; intro: string; slugs: string[] }[] = [
+const classGroups: { title: string; intro: string; slugs: string[]; icon: ReactNode }[] = [
   {
     title: "Bil og tilhenger",
     intro:
       "Klasse B er det vanlige bilførerkortet. B96 og BE er utvidelser for deg som skal trekke tyngre tilhenger.",
     slugs: ["klasse-b", "klasse-b96", "klasse-be"],
+    icon: CarIcon,
   },
   {
     title: "Moped og motorsykkel",
     intro:
       "Tohjulingene er delt etter alder og motorstørrelse – fra moped ved 16 år til tung motorsykkel ved 24 (eller 20 via A2).",
     slugs: ["klasse-am", "klasse-a1", "klasse-a2", "klasse-a"],
+    icon: MotorcycleIcon,
   },
   {
     title: "Tunge kjøretøy",
     intro:
       "Lastebilklassene bygger på klasse B og krever helseattest. Yrkeskjøring krever i tillegg YSK.",
     slugs: ["klasse-c1", "klasse-c"],
+    icon: TruckIcon,
   },
   {
     title: "Traktor",
     intro: "Klasse T gjelder traktor og motorredskap, og kan tas fra 16 år.",
     slugs: ["klasse-t"],
+    icon: TractorIcon,
   },
 ];
 
@@ -83,7 +94,12 @@ export default function KlasserPage() {
 
       {classGroups.map((group) => (
         <section className="class-group" key={group.title}>
-          <h2>{group.title}</h2>
+          <h2 className="class-group__title">
+            <span aria-hidden="true" style={{ display: "inline-flex" }}>
+              {group.icon}
+            </span>
+            {group.title}
+          </h2>
           <p className="class-group__intro">{group.intro}</p>
           <ul className="class-rows">
             {group.slugs.map((slug) => {

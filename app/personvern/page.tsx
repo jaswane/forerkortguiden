@@ -25,6 +25,7 @@ export default function PersonvernPage() {
         <ul>
           <li>Ingen brukerkontoer eller innlogging</li>
           <li>Ingen kontaktskjemaer – kontakt skjer via din egen e-post</li>
+          <li>Ingen besøksstatistikk eller analyseverktøy per i dag</li>
           <li>Ingen annonser eller tredjeparts sporingsskript</li>
           <li>Ingen deling eller salg av data</li>
         </ul>
@@ -43,7 +44,9 @@ export default function PersonvernPage() {
         </p>
         <p>
           Kalkulatorene (kostnad og tilhenger) regner alt lokalt i nettleseren og lagrer
-          ingenting.
+          ingenting. Verktøyene har ingen fritekstfelter, og du skal ikke legge inn
+          personopplysninger, helseopplysninger eller andre sensitive data noe sted på
+          nettstedet.
         </p>
 
         <h2>Teknisk drift</h2>

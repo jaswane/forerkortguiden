@@ -44,23 +44,26 @@ const feeFields: CostField[] = [
   {
     id: "teoriprove",
     label: "Teoriprøve, gebyr (kr)",
-    default: 700,
+    hint: "Sats hos Statens vegvesen per februar 2026: 480 kr.",
+    default: 480,
   },
   {
     id: "oppkjoring",
     label: "Praktisk prøve, gebyr (kr)",
-    default: 1400,
+    hint: "Sats hos Statens vegvesen per februar 2026: 1 540 kr på trafikkstasjon.",
+    default: 1540,
   },
   {
     id: "leiebil",
     label: "Leie av bil til oppkjøringen (kr)",
-    hint: "De fleste leier trafikkskolens bil.",
+    hint: "De fleste leier trafikkskolens bil – prisen varierer.",
     default: 2500,
   },
   {
     id: "utstedelse",
     label: "Førerkortutstedelse og bilde (kr)",
-    default: 700,
+    hint: "Satser hos Statens vegvesen per februar 2026: 270 kr + 100 kr for bilde.",
+    default: 370,
   },
 ];
 

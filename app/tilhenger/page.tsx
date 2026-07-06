@@ -38,7 +38,7 @@ const faqItems = [
   {
     question: "Hva er forskjellen på B96 og BE?",
     answer:
-      "B96 gir rett til vogntog med samlet tillatt totalvekt opptil 4 250 kg og krever bare et kurs. BE gir rett til tilhenger med tillatt totalvekt opptil 3 500 kg og krever praktisk prøve.",
+      "B96 gir rett til vogntog med samlet tillatt totalvekt opptil 4 250 kg og krever bare obligatorisk opplæring. BE gir rett til tilhenger med tillatt totalvekt opptil 3 500 kg og krever i tillegg praktisk prøve.",
   },
 ];
 
@@ -66,7 +66,7 @@ const comparePanels = [
     figureNote: "bil + tilhenger samlet tillatt totalvekt",
     rows: [
       { label: "Unntak", value: "Over 4 250 kg samlet? Da trenger du BE" },
-      { label: "Krav", value: "Obligatorisk kurs på minst 7 timer – ingen prøve" },
+      { label: "Krav", value: "Minst 7 timer obligatorisk opplæring – ingen prøve" },
       { label: "Typisk", value: "Middels campingvogn, større varehenger" },
     ],
     linkLabel: "Se klasse B96",
@@ -79,7 +79,7 @@ const comparePanels = [
     figureNote: "tilhengerens tillatte totalvekt",
     rows: [
       { label: "Unntak", value: "Tyngre henger enn 3 500 kg krever C1E" },
-      { label: "Krav", value: "Lastsikringskurs og praktisk prøve" },
+      { label: "Krav", value: "Minst 7 timer obligatorisk opplæring og praktisk prøve" },
       { label: "Typisk", value: "Hestehenger, stor campingvogn, tung båt" },
     ],
     linkLabel: "Se klasse BE",

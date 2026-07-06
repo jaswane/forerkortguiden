@@ -27,7 +27,8 @@ const faqItems = [
   },
   {
     question: "Hva skjer hvis jeg stryker på teoriprøven?",
-    answer: "Da må du vente to uker før du kan ta ny prøve.",
+    answer:
+      "For klasse B må du vente to uker før du kan ta ny prøve. For tunge klasser som C og D er ventetiden én uke.",
   },
   {
     question: "Hva må jeg ha med til teoriprøven?",

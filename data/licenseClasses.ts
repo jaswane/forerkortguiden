@@ -65,7 +65,7 @@ export const licenseClasses: LicenseClass[] = [
       "Personbil og varebil med tillatt totalvekt opptil 3 500 kg og maks 8 passasjerplasser i tillegg til førerplassen",
       "Tilhenger med tillatt totalvekt opptil 750 kg (vogntog opptil 4 250 kg)",
       "Tilhenger over 750 kg, hvis bilens og tilhengerens tillatte totalvekt til sammen ikke overstiger 3 500 kg",
-      "Moped (klasse AM) og, med visse begrensninger, traktor og motorredskap med konstruktiv hastighet ikke over 40 km/t",
+      "Moped (klasse AM) og traktor/motorredskap med tillatt totalvekt opptil 3 500 kg – med tilhenger bare når konstruktiv hastighet er høyst 40 km/t",
     ],
     limits: [
       "Bilens vognkort setter egne grenser for hvor tung tilhenger bilen faktisk kan trekke – disse gjelder uavhengig av førerkortklassen",
@@ -124,7 +124,7 @@ export const licenseClasses: LicenseClass[] = [
       {
         question: "Gjelder førerkortet hvis jeg tok oppkjøringen med automatgir?",
         answer:
-          "Reglene for automatgir og kode 78 har blitt endret de siste årene. Sjekk hos Statens vegvesen hva som gjelder for førerkortet ditt før du kjører bil med manuelt gir.",
+          "Kjører du opp med automatgir, får du kode 78 i førerkortet, og føreretten gjelder bare biler med automatgir. For å fjerne koden må du ta ny praktisk prøve med manuelt gir.",
       },
     ],
     related: [
@@ -179,7 +179,7 @@ export const licenseClasses: LicenseClass[] = [
     },
     shortAnswer: [
       "B96 er en utvidelse av klasse B som lar deg kjøre bil og tilhenger med samlet tillatt totalvekt opptil 4 250 kg.",
-      "Du trenger ikke egen oppkjøring – bare et obligatorisk kurs på trafikkskole på minst 7 undervisningstimer.",
+      "Du trenger ikke egen oppkjøring eller teoriprøve – bare minst 7 timer obligatorisk opplæring ved trafikkskole.",
     ],
     covers: [
       "Samme kjøretøy som klasse B",
@@ -195,14 +195,14 @@ export const licenseClasses: LicenseClass[] = [
         description: "B96 er en utvidelse og forutsetter at du har klasse B.",
       },
       {
-        title: "Obligatorisk kurs på trafikkskole",
+        title: "Obligatorisk opplæring ved trafikkskole",
         description:
-          "Kurset er på minst 7 undervisningstimer og kombinerer teori og praktisk kjøring med tilhenger.",
+          "Minst 7 timer obligatorisk opplæring, blant annet lastsikringskurs, sikkerhetskurs på veg og trinnvurderinger – teori og praktisk kjøring med tilhenger.",
       },
       {
         title: "Utvidelsen registreres",
         description:
-          "Etter fullført kurs melder trafikkskolen fra, og du kan få førerkortet oppdatert med B96 (kode 96). Ingen teoriprøve eller oppkjøring kreves.",
+          "Etter fullført opplæring melder trafikkskolen fra, og du kan få førerkortet oppdatert med B96 (kode 96). Ingen teoriprøve eller oppkjøring kreves.",
       },
     ],
     misunderstandings: [
@@ -216,7 +216,7 @@ export const licenseClasses: LicenseClass[] = [
       {
         question: "Må jeg ta oppkjøring for å få B96?",
         answer:
-          "Nei. B96 krever kun et obligatorisk kurs på minst 7 undervisningstimer ved trafikkskole. Det er ingen egen teoriprøve eller praktisk prøve.",
+          "Nei. B96 krever kun minst 7 timer obligatorisk opplæring ved trafikkskole. Det er ingen egen teoriprøve eller praktisk prøve.",
       },
       {
         question: "Når holder B96, og når trenger jeg BE?",
@@ -245,7 +245,7 @@ export const licenseClasses: LicenseClass[] = [
     ],
     sources: ["vegvesenForerkort", "forerkortforskriften", "trafikkopplaringsforskriften"],
     caveat: standardCaveat,
-    cardSummary: "Utvidelse av B: vogntog opptil 4 250 kg. Kun kurs, ingen prøve.",
+    cardSummary: "Utvidelse av B: vogntog opptil 4 250 kg. Kun opplæring, ingen prøve.",
     tableFacts: {
       age: "18 år",
       vehicles: "Bil + tilhenger, samlet opptil 4 250 kg",
@@ -269,7 +269,7 @@ export const licenseClasses: LicenseClass[] = [
     },
     shortAnswer: [
       "Klasse BE lar deg kjøre bil i klasse B med tilhenger med tillatt totalvekt opptil 3 500 kg.",
-      "Du må ha klasse B fra før, gjennomføre obligatorisk lastsikringskurs og bestå en praktisk prøve. Det er ingen egen teoriprøve for BE.",
+      "Du må ha klasse B fra før, gjennomføre minst 7 timer obligatorisk opplæring – blant annet lastsikringskurs – og bestå en praktisk prøve. Det er ingen egen teoriprøve for BE.",
     ],
     covers: [
       "Samme kjøretøy som klasse B",
@@ -285,9 +285,9 @@ export const licenseClasses: LicenseClass[] = [
         description: "BE bygger på klasse B.",
       },
       {
-        title: "Opplæring med tilhenger",
+        title: "Obligatorisk opplæring med tilhenger",
         description:
-          "Du gjennomfører opplæring ved trafikkskole, inkludert obligatorisk kurs i sikring av last (2 undervisningstimer). Privat øvelseskjøring med tilhenger er også mulig.",
+          "Minst 7 timer obligatorisk opplæring ved trafikkskole, blant annet kurs i sikring av last (2 timer), sikkerhetskurs på veg og trinnvurderinger. Privat øvelseskjøring med tilhenger er også mulig i tillegg.",
       },
       {
         title: "Praktisk prøve",
@@ -306,7 +306,7 @@ export const licenseClasses: LicenseClass[] = [
       {
         question: "Må jeg ta teoriprøve for klasse BE?",
         answer:
-          "Nei, det er ingen egen teoriprøve for BE. Du må gjennomføre obligatorisk lastsikringskurs og bestå praktisk prøve med bil og tilhenger.",
+          "Nei, det er ingen egen teoriprøve for BE. Du må gjennomføre obligatorisk opplæring (minst 7 timer, inkludert lastsikringskurs) og bestå praktisk prøve med bil og tilhenger.",
       },
       {
         question: "Hva er forskjellen på BE og B96?",
@@ -335,7 +335,7 @@ export const licenseClasses: LicenseClass[] = [
     ],
     sources: ["vegvesenForerkort", "forerkortforskriften", "trafikkopplaringsforskriften"],
     caveat: standardCaveat,
-    cardSummary: "Tilhenger opptil 3 500 kg. Krever lastsikringskurs og oppkjøring.",
+    cardSummary: "Tilhenger opptil 3 500 kg. Krever obligatorisk opplæring og oppkjøring.",
     tableFacts: {
       age: "18 år",
       vehicles: "Bil + tilhenger opptil 3 500 kg",
@@ -352,11 +352,11 @@ export const licenseClasses: LicenseClass[] = [
     minAge: "16 år",
     shortAnswer: [
       "Klasse AM er førerkortet for moped. Du kan ta det fra du er 16 år.",
-      "Du må gjennomføre trafikalt grunnkurs, obligatorisk mopedopplæring og bestå teoriprøve. Det er ingen praktisk prøve for tohjuls moped.",
+      "Du må gjennomføre trafikalt grunnkurs, obligatorisk mopedopplæring og bestå teoriprøve. For kode 146 er teoriprøven den avsluttende prøven – ingen oppkjøring.",
     ],
     covers: [
-      "Tohjuls moped (kode 146) med konstruktiv hastighet opptil 45 km/t",
-      "Tre- og firehjuls moped (kode 147), for eksempel mopedbil, avhengig av hvilken opplæring du tar",
+      "Kode 146: tohjuls moped, samt tre- og firehjuls moped med egenvekt opptil 150 kg – konstruktiv hastighet opptil 45 km/t",
+      "Kode 147: tre- og firehjuls moped uavhengig av egenvekt, for eksempel mopedbil – krever egen opplæring",
     ],
     limits: [
       "AM146 gjelder bare tohjuls moped – mopedbil krever AM147",
@@ -370,7 +370,7 @@ export const licenseClasses: LicenseClass[] = [
       {
         title: "Obligatorisk mopedopplæring",
         description:
-          "Opplæringen tas ved trafikkskole og avsluttes uten praktisk prøve for tohjuls moped.",
+          "Opplæringen tas ved trafikkskole. For kode 146 er det ingen praktisk prøve – teoriprøven avslutter løpet.",
       },
       {
         title: "Teoriprøve",
@@ -381,12 +381,12 @@ export const licenseClasses: LicenseClass[] = [
       {
         question: "Er det oppkjøring for moped?",
         answer:
-          "Nei, for tohjuls moped (AM146) er det ingen praktisk prøve. Du må gjennomføre obligatorisk opplæring og bestå teoriprøven.",
+          "Nei, for kode 146 er det ingen praktisk prøve. Du må gjennomføre obligatorisk opplæring og bestå teoriprøven, som er den avsluttende prøven.",
       },
       {
         question: "Kan jeg kjøre mopedbil med AM146?",
         answer:
-          "Nei. Mopedbil er en tre-/firehjuls moped og krever kode 147, som har egen opplæring.",
+          "Nei. Mopedbil krever kode 147, som har egen opplæring. Kode 146 dekker tohjuls moped og lette tre-/firehjuls mopeder med egenvekt opptil 150 kg.",
       },
       {
         question: "Kan jeg kjøre moped med vanlig bilførerkort?",
@@ -795,9 +795,9 @@ export const licenseClasses: LicenseClass[] = [
       "Traktor og motorredskap med konstruktiv hastighet opptil 40 km/t, med tilhenger",
     ],
     limits: [
-      "For førere under 21 år gjelder egne begrensninger på vekt og hastighet for enkelte kombinasjoner – sjekk detaljene hos Statens vegvesen",
-      "Raskere traktorer kan kreve andre klasser",
-      "Har du klasse B, kan du allerede kjøre traktor og motorredskap med konstruktiv hastighet opptil 40 km/t, med visse begrensninger",
+      "Frem til du har to års erfaring eller fyller 21 år, er føreretten begrenset til traktor og tilhenger med samlet tillatt totalvekt opptil 25 000 kg",
+      "Raskere traktorer krever egen kode eller andre klasser",
+      "Har du klasse B, kan du allerede kjøre traktor og motorredskap med tillatt totalvekt opptil 3 500 kg",
     ],
     process: [
       {
@@ -818,7 +818,7 @@ export const licenseClasses: LicenseClass[] = [
       {
         question: "Kan jeg kjøre traktor med bilførerkort?",
         answer:
-          "Ja, klasse B gir rett til å kjøre traktor og motorredskap med konstruktiv hastighet opptil 40 km/t, med visse begrensninger.",
+          "Ja, klasse B gir rett til å kjøre traktor og motorredskap med tillatt totalvekt opptil 3 500 kg – med tilhenger bare når konstruktiv hastighet er høyst 40 km/t.",
       },
       {
         question: "Hvor gammel må jeg være for å kjøre traktor?",

@@ -21,14 +21,14 @@ const faqItems = [
       "Du må oppfylle alderskravet, ha bestått teoriprøven og ha all obligatorisk opplæring registrert. Prøven bestilles hos Statens vegvesen.",
   },
   {
-    question: "Hvor lenge varer oppkjøringen for klasse B?",
+    question: "Hvor lenge varer oppkjøringen?",
     answer:
-      "Sett av rundt 75 minutter totalt. Selve kjøringen utgjør størstedelen, i tillegg kommer sikkerhetskontroll og tilbakemelding.",
+      "Prøven varer 65–75 minutter, avhengig av klasse. Selve kjøringen utgjør størstedelen, i tillegg kommer sikkerhetskontroll og tilbakemelding.",
   },
   {
     question: "Hva skjer hvis jeg ikke består oppkjøringen?",
     answer:
-      "Da må du vente fire uker før du kan ta ny praktisk prøve, og du må betale nytt gebyr.",
+      "Da må du vente i minst fire uker før du kan ta ny praktisk prøve, og du må betale nytt gebyr.",
   },
   {
     question: "Hvilken bil brukes til oppkjøringen?",
@@ -54,9 +54,10 @@ export default function OppkjoringPage() {
 
       <ShortAnswer>
         <p>
-          Oppkjøringen for klasse B tas hos Statens vegvesen og tar rundt 75 minutter,
-          inkludert sikkerhetskontroll. Krav: alderskravet oppfylt, bestått teoriprøve og
-          all obligatorisk opplæring registrert. Består du ikke, er ventetiden fire uker.
+          Oppkjøringen tas hos Statens vegvesen og varer 65–75 minutter, inkludert
+          sikkerhetskontroll. Krav: alderskravet oppfylt, bestått teoriprøve og all
+          obligatorisk opplæring registrert. Består du ikke, er ventetiden minst fire
+          uker.
         </p>
       </ShortAnswer>
 
