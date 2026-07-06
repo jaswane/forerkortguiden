@@ -126,7 +126,7 @@ export default function OppkjoringPage() {
 
       <SourceBox
         sourceIds={["vegvesenForerkort", "trafikkopplaringsforskriften"]}
-        caveat="Krav til prøvekjøretøy, gebyrer og bestilling fastsettes av Statens vegvesen. Prøvens lengde og innhold varierer mellom førerkortklassene."
+        caveat="Ventetiden ved stryk følger av trafikkopplæringsforskriften. Krav til prøvekjøretøy, gebyrer og bestilling fastsettes av Statens vegvesen og kan endres. Prøvens lengde og innhold varierer mellom førerkortklassene."
       />
     </div>
   );

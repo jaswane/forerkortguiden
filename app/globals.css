@@ -1024,7 +1024,7 @@ fieldset.field {
   .intent__grid li:nth-child(odd) {
     border-right: 1px solid var(--color-border-soft);
   }
-  .intent__grid li:nth-last-child(-n + 1) {
+  .intent__grid li:nth-last-child(-n + 2) {
     border-bottom: none;
   }
 }
@@ -1188,12 +1188,17 @@ fieldset.field {
 .fact-strip > div {
   flex: 1 1 12rem;
   padding: 0.7rem 1.1rem;
-  border-right: 1px solid var(--color-border-soft);
+}
+
+.fact-strip > div:not(:last-child) {
   border-bottom: 1px solid var(--color-border-soft);
 }
 
-.fact-strip > div:last-child {
-  border-right: none;
+@media (min-width: 700px) {
+  .fact-strip > div:not(:last-child) {
+    border-bottom: none;
+    border-right: 1px solid var(--color-border-soft);
+  }
 }
 
 .fact-strip dt {

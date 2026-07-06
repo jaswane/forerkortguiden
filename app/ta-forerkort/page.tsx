@@ -80,8 +80,8 @@ export default function TaForerkortPage() {
               title: "Start øvelseskjøring (fra 16 år)",
               description: (
                 <p>
-                  Øv privat med ledsager og/eller ta kjøretimer ved trafikkskole.
-                  Mengdetrening er den viktigste enkeltfaktoren for å lykkes.{" "}
+                  Øv privat med ledsager og/eller ta kjøretimer ved trafikkskole. Mye og
+                  variert mengdetrening gir de beste forutsetningene.{" "}
                   <Link href={routes.ovelseskjoring}>Se reglene for øvelseskjøring</Link>.
                 </p>
               ),
@@ -167,8 +167,8 @@ export default function TaForerkortPage() {
       <Faq items={faqItems} />
 
       <SourceBox
-        sourceIds={["vegvesenForerkort", "trafikkopplaringsforskriften"]}
-        caveat="Opplæringskravene er fastsatt i trafikkopplæringsforskriften. Trinninndelingen gjelder klasse B; andre klasser har egne obligatoriske deler."
+        sourceIds={["vegvesenForerkort", "trafikkopplaringsforskriften", "vegtrafikkloven"]}
+        caveat="Opplæringskravene er fastsatt i trafikkopplæringsforskriften, og prøveperioden følger av vegtrafikkloven. Trinninndelingen gjelder klasse B; andre klasser har egne obligatoriske deler."
       />
     </div>
   );

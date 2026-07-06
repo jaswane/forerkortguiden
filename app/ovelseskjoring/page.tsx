@@ -53,8 +53,9 @@ export default function OvelseskjoringPage() {
       <Breadcrumbs crumbs={[{ name: "Øvelseskjøring", path: routes.ovelseskjoring }]} />
       <h1>Øvelseskjøring – reglene enkelt forklart</h1>
       <p className="lead">
-        Privat øvelseskjøring er gratis mengdetrening og den viktigste enkeltfaktoren for
-        å bli en trygg sjåfør. Her er kravene som må være på plass.
+        Privat øvelseskjøring er gratis mengdetrening – og mye variert øving er noe av
+        det som bidrar mest til å gjøre deg til en trygg sjåfør. Her er kravene som må
+        være på plass.
       </p>
 
       <ShortAnswer>

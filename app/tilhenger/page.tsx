@@ -47,7 +47,7 @@ const comparePanels = [
     code: "B",
     name: "Vanlig førerkort",
     figure: "750 kg",
-    figureNote: "tilhengerens tillatte totalvekt – alltid lov",
+    figureNote: "tilhengerens tillatte totalvekt – alltid innenfor klasse B",
     rows: [
       {
         label: "Unntak",

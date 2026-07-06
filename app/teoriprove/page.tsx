@@ -138,7 +138,7 @@ export default function TeoriprovePage() {
 
       <SourceBox
         sourceIds={["vegvesenForerkort", "trafikkopplaringsforskriften"]}
-        caveat="Gebyrer og praktiske detaljer for teoriprøven fastsettes av Statens vegvesen og kan endres – sjekk vegvesen.no for oppdaterte satser og bestillingsregler."
+        caveat="Reglene om når prøven kan tas, gyldighet og ventetid ved stryk følger av trafikkopplæringsforskriften. Gebyrer og praktiske detaljer fastsettes av Statens vegvesen og kan endres – sjekk vegvesen.no for oppdaterte satser og bestillingsregler."
       />
     </div>
   );

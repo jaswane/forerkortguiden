@@ -116,7 +116,7 @@ export default function TrafikaltGrunnkursPage() {
       <Faq items={faqItems} />
 
       <SourceBox
-        sourceIds={["vegvesenForerkort", "trafikkopplaringsforskriften", "tryggTrafikk"]}
+        sourceIds={["vegvesenForerkort", "trafikkopplaringsforskriften"]}
         caveat="Kravene til trafikalt grunnkurs er fastsatt i trafikkopplæringsforskriften kapittel 8. Datogrensene for mørkekjøring står i forskriften."
       />
     </div>

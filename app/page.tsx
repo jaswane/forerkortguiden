@@ -60,9 +60,9 @@ export default function HomePage() {
         <div className="container">
           <h1>Finn ut hvilket førerkort du trenger – og hva neste steg er</h1>
           <p className="lead">
-            {SITE_NAME} forklarer førerkortklasser, opplæring, prøver, kostnader og
-            tilhengerregler i klart språk, basert på troverdige kilder. Uavhengig av
-            myndigheter og trafikkskoler.
+            Svar på førerkortspørsmålene dine – klasser, regler, kostnader og neste steg
+            – forklart enkelt og bygget på offisielle kilder. {SITE_NAME} er uavhengig
+            av myndigheter og trafikkskoler.
           </p>
           <div className="hero__actions">
             <Link
@@ -179,7 +179,7 @@ export default function HomePage() {
 
         <InfoBox title="Uavhengig veiviser">
           <p>
-            {INDEPENDENCE_NOTE} Les mer om{" "}
+            {INDEPENDENCE_NOTE} Se{" "}
             <Link href={routes.kilderOgMetode}>kildene og metoden vår</Link>.
           </p>
         </InfoBox>
