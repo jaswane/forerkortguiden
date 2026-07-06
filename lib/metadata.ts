@@ -25,11 +25,13 @@ export function buildMetadata({ title, description, path }: PageMeta): Metadata 
       siteName: SITE_NAME,
       locale: "nb_NO",
       type: "website",
+      images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["/opengraph-image"],
     },
   };
 }

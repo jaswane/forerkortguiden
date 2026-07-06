@@ -1,5 +1,5 @@
 import { Breadcrumbs } from "@/components/content/Breadcrumbs";
-import { CONTACT_EMAIL, SITE_NAME } from "@/lib/constants";
+import { SITE_NAME } from "@/lib/constants";
 import { buildMetadata } from "@/lib/metadata";
 import { routes } from "@/lib/routes";
 
@@ -65,7 +65,7 @@ export default function PersonvernPage() {
 
         <h2>Spørsmål?</h2>
         <p>
-          Kontakt oss på <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+          Se <a href={routes.kontakt}>kontaktsiden</a> for hvordan du når oss.
         </p>
       </div>
     </div>
