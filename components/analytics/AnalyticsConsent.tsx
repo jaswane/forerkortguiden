@@ -6,6 +6,13 @@ import { useEffect, useState } from "react";
 import { ANALYTICS_CONSENT_KEY, GA_MEASUREMENT_ID } from "@/lib/constants";
 import { routes } from "@/lib/routes";
 
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 type Consent = "accepted" | "rejected" | null;
 
 /** Leser samtykke trygt (kan feile i privat modus / blokkert lagring). */
@@ -18,18 +25,32 @@ function readConsent(): Consent {
   }
 }
 
+/** Oppdaterer Consent Mode i sanntid. Analyse er det eneste vi bruker; annonse-
+ *  lagring holdes alltid «denied». */
+function updateConsent(granted: boolean) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("consent", "update", {
+    analytics_storage: granted ? "granted" : "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+}
+
 /**
- * Analysesamtykke (opt-in) + betinget lasting av Google Analytics 4.
+ * Google Analytics 4 med Consent Mode v2.
  *
- * - Ingen Google-tag lastes før brukeren aktivt godtar analyse.
- * - Consent Mode settes til «denied» som standard, «granted» først ved godkjenning.
- * - next/script dedupliserer på id, så GA lastes kun én gang – også ved
- *   klientnavigasjon mellom sider.
+ * - Google-taggen (gtag.js) lastes på hver side, slik at Googles tag-detektor
+ *   finner den. Consent Mode settes til «denied» som standard FØR config, så
+ *   ingen analyse-cookie (_ga) settes før brukeren godtar.
+ * - Har brukeren allerede godtatt, oppdateres analytics_storage til «granted»
+ *   umiddelbart i init-skriptet (før første sidevisning måles med samtykke).
+ * - «Godta analyse» oppdaterer til granted i sanntid; «Avvis» beholder denied.
+ * - next/script dedupliserer på id, så taggen lastes kun én gang – også ved
+ *   klientnavigasjon.
  */
 export function AnalyticsConsent() {
   // «ready» skiller «ikke lest ennå» (server/før hydrering) fra «lest, ingen valg».
-  // Før hydrering rendrer vi verken banner eller GA – unngår hydreringsavvik og
-  // hindrer at GA lastes på serveren.
   const [state, setState] = useState<{ ready: boolean; consent: Consent }>({
     ready: false,
     consent: null,
@@ -47,6 +68,7 @@ export function AnalyticsConsent() {
       } catch {
         // Ignorer.
       }
+      updateConsent(false);
       setState({ ready: true, consent: null });
     }
     window.addEventListener("fkg:analytics-consent-reset", onReset);
@@ -59,33 +81,42 @@ export function AnalyticsConsent() {
     } catch {
       // Ignorer – valget gjelder for økten uansett.
     }
+    updateConsent(value === "accepted");
     setState({ ready: true, consent: value });
   }
 
   const showBanner = ready && consent === null;
-  const loadGa = ready && consent === "accepted";
 
   return (
     <>
-      {loadGa && (
-        <>
-          <Script
-            id="ga4-src"
-            strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          />
-          <Script id="ga4-init" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('consent', 'default', { analytics_storage: 'denied' });
-              gtag('js', new Date());
+      {/* Google-taggen lastes alltid, men med Consent Mode default «denied».
+          Init-skriptet leser lagret samtykke og oppgraderer til «granted» hvis
+          brukeren allerede har godtatt – slik at også første sidevisning måles. */}
+      <Script
+        id="ga4-src"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+      />
+      <Script id="ga4-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+          });
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}');
+          try {
+            if (window.localStorage.getItem('${ANALYTICS_CONSENT_KEY}') === 'accepted') {
               gtag('consent', 'update', { analytics_storage: 'granted' });
-              gtag('config', '${GA_MEASUREMENT_ID}');
-            `}
-          </Script>
-        </>
-      )}
+            }
+          } catch (e) {}
+        `}
+      </Script>
 
       {showBanner && (
         <div

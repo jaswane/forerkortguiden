@@ -27,8 +27,8 @@ export default function PersonvernPage() {
         <ul>
           <li>Ingen brukerkontoer eller innlogging</li>
           <li>Ingen kontaktskjemaer – kontakt skjer via din egen e-post</li>
-          <li>Ingen analyse før du har samtykket</li>
-          <li>Ingen annonser eller tredjeparts sporing utover valgfri analyse</li>
+          <li>Ingen analyse-lagring før du har samtykket</li>
+          <li>Ingen annonser eller annonserettet sporing</li>
           <li>Ingen deling eller salg av data</li>
         </ul>
 
@@ -36,14 +36,22 @@ export default function PersonvernPage() {
         <p>
           Vi bruker Google Analytics for å forstå hvordan nettstedet brukes og forbedre
           innholdet – for eksempel hvilke sider som besøkes og hvordan folk navigerer.
-          Analysen er <strong>opt-in</strong>: den lastes ikke før du aktivt har trykket
-          «Godta analyse» i samtykkebanneret. Avviser du, lastes ingen Google-skript, og
-          nettstedet fungerer helt normalt.
+          Google-taggen kan lastes for å håndtere samtykke og måling, men vi bruker{" "}
+          <strong>samtykkemodus</strong> (Consent Mode): før du har samtykket, er
+          analyse-lagring satt til «denied», og{" "}
+          <strong>det settes ingen analyse-informasjonskapsel (som _ga)</strong>.
         </p>
         <ul>
           <li>
-            Google Analytics kan sette informasjonskapsler (cookies) eller bruke lignende
-            teknologi <strong>først etter at du har samtykket</strong>.
+            Analyse knyttes og lagres først når du aktivt trykker «Godta analyse» i
+            samtykkebanneret. Da settes analyse-lagring til «granted».
+          </li>
+          <li>
+            Trykker du «Avvis», forblir analyse-lagring «denied», og nettstedet fungerer
+            helt normalt.
+          </li>
+          <li>
+            Vi bruker kun analyse – annonserelatert lagring holdes alltid avslått.
           </li>
           <li>
             Selve samtykkevalget ditt («godtatt» eller «avvist») lagres lokalt i
@@ -54,8 +62,8 @@ export default function PersonvernPage() {
         <h3>Endre analysevalget</h3>
         <ConsentReset />
         <p className="text-muted">
-          Du kan også slette all nettstedsdata i nettleseren, eller avslå analyse i
-          banneret som vises på nytt etter at du har nullstilt valget.
+          Når du nullstiller valget, settes analyse-lagring tilbake til «denied», og
+          banneret vises på nytt. Du kan også slette all nettstedsdata i nettleseren.
         </p>
 
         <h2>Lokal lagring i nettleseren (localStorage)</h2>

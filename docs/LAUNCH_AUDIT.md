@@ -44,31 +44,36 @@ som grunnlag (ikke gjenskapt, jf. instruks).
 - Null horisontal overflow ved 375/768/1280/1440 px
 
 **Ytelse og drift**
-- Kun statiske sider; TTFB 96–408 ms i produksjon med CDN-cache HIT; ingen
-  tredjepartsskript før samtykke; ingen konsoll-/hydreringsfeil (verifisert mot
-  lokal prod-bygg av samme kode); avhengigheter kun Next/React/TypeScript/ESLint
+- Kun statiske sider; TTFB 96–408 ms i produksjon med CDN-cache HIT; eneste
+  tredjepartsskript er Google-taggen (Consent Mode, analyse denied før samtykke);
+  ingen konsoll-/hydreringsfeil (verifisert mot lokal prod-bygg av samme kode);
+  avhengigheter kun Next/React/TypeScript/ESLint
 - Kontakt-e-post synlig KUN på /kontakt (verifisert i produksjon); Swane
   Creative-lenke i footer fungerer
 - QA-skript i repo: check:routes og check:links, begge kjørbare mot produksjon
 
-**Analyse og samtykke** (lagt til etter første revisjon, commit `7ac9eaa`)
-- Google Analytics 4 (`G-E7JQ1EJ0VH`) er installert som **opt-in**: Google-taggen
-  (`googletagmanager.com/gtag/js`) lastes IKKE før brukeren aktivt trykker «Godta
-  analyse» i samtykkebanneret. Verifisert i produksjon: ingen GA-referanse i
-  server-HTML, og deployet klient-JS laster GA-skriptene kun når samtykke er
-  «accepted» (`loadGa = ready && consent === "accepted"`).
-- Samtykke lagres lokalt i nettleseren under nøkkelen
-  `forerkortguiden:analytics-consent` (`accepted`/`rejected`); avvis lar hele
-  siden fungere normalt. Consent Mode: `analytics_storage` denied → granted.
-- next/script dedupliserer GA på id (ingen dobbeltlasting ved klientnavigasjon).
+**Analyse og samtykke** (Consent Mode v2, endret i commit `8c7b4a1`+)
+- Google Analytics 4 (`G-E7JQ1EJ0VH`) med **Google Consent Mode v2**. Google-taggen
+  (`googletagmanager.com/gtag/js`) lastes på hver side slik at Googles tag-detektor
+  finner den. Consent Mode settes til `denied` som standard FØR `config`
+  (`analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization` alle
+  denied), så ingen analyse-cookie (`_ga`) settes før samtykke.
+- Analyse-lagring oppgraderes til `granted` kun etter opt-in: init-skriptet leser
+  lagret samtykke og oppgraderer umiddelbart hvis brukeren allerede har godtatt,
+  og «Godta analyse» kaller `gtag('consent','update',{analytics_storage:'granted'})`
+  i sanntid. Annonserelatert lagring holdes alltid `denied`.
+- Endringen fra «last først etter samtykke» til Consent Mode default-denied ble
+  gjort fordi Googles tag-detektor ikke fant taggen når den ikke lastet før
+  samtykke. Brukeren kan fortsatt avvise, og «Avvis» beholder `denied`.
+- Samtykke lagres lokalt under nøkkelen `forerkortguiden:analytics-consent`
+  (`accepted`/`rejected`). next/script dedupliserer taggen på id (ingen
+  dobbeltlasting ved klientnavigasjon).
 - Banneret er fast i bunnen, mobilvennlig, uten horisontal overflow, med synlige
-  fokusstiler; skjult i print. Runtime-flyten (banner vises, Avvis/Godta/Endre
-  analysevalg, GA lastes én gang, ingen konsoll-/hydreringsfeil, mobil uten
-  overflow) er verifisert interaktivt mot lokal prod-bygg av samme commit.
-- /personvern forklarer valgfri GA, cookies først etter samtykke, lokalt lagret
-  valg, at man kan avvise og bruke siden normalt, at sjekklister bruker
-  localStorage, og har en «Endre analysevalg»-knapp. Den tidligere formuleringen
-  «ingen besøksstatistikk» er fjernet.
+  fokusstiler; skjult i print. Runtime-flyten er verifisert interaktivt mot lokal
+  prod-bygg av samme commit.
+- /personvern forklarer at taggen kan lastes for samtykke/måling, at analyse-
+  lagring er denied før samtykke (ingen `_ga`-cookie), lokalt lagret valg, at man
+  kan avvise og bruke siden normalt, og har en «Endre analysevalg»-knapp.
 
 ## 2. Delvis dekket
 
