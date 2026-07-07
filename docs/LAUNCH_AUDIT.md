@@ -1,7 +1,8 @@
 # Lanseringsrevisjon – forerkortguiden.no
 
 Intern samsvarsrevisjon mot MASTER_PRD_FULL.docx og FABLE5_EXECUTION_BRIEF.md.
-Gjennomført 6. juli 2026, mot commit `ecf6543` (live på https://forerkortguiden.no).
+Gjennomført 6. juli 2026, oppdatert etter analyse- og ikontillegg (siste commit
+`7ac9eaa`, live på https://forerkortguiden.no).
 Merk: felles Swane Creative-sjekkliste finnes ikke i docs/ og er derfor ikke brukt
 som grunnlag (ikke gjenskapt, jf. instruks).
 
@@ -44,33 +45,50 @@ som grunnlag (ikke gjenskapt, jf. instruks).
 
 **Ytelse og drift**
 - Kun statiske sider; TTFB 96–408 ms i produksjon med CDN-cache HIT; ingen
-  tredjepartsskript; ingen konsoll-/hydreringsfeil (verifisert mot lokal prod-bygg
-  av samme kode); avhengigheter kun Next/React/TypeScript/ESLint
+  tredjepartsskript før samtykke; ingen konsoll-/hydreringsfeil (verifisert mot
+  lokal prod-bygg av samme kode); avhengigheter kun Next/React/TypeScript/ESLint
 - Kontakt-e-post synlig KUN på /kontakt (verifisert i produksjon); Swane
   Creative-lenke i footer fungerer
-- Personvern: ærlig om ingen analyse/statistikk, localStorage forklart med
-  slettemulighet, advarsel mot å legge inn sensitive data (PRD-krav om nøktern
-  forklaring ved analysebruk er ikke utløst – ingen analyse er installert)
 - QA-skript i repo: check:routes og check:links, begge kjørbare mot produksjon
+
+**Analyse og samtykke** (lagt til etter første revisjon, commit `7ac9eaa`)
+- Google Analytics 4 (`G-E7JQ1EJ0VH`) er installert som **opt-in**: Google-taggen
+  (`googletagmanager.com/gtag/js`) lastes IKKE før brukeren aktivt trykker «Godta
+  analyse» i samtykkebanneret. Verifisert i produksjon: ingen GA-referanse i
+  server-HTML, og deployet klient-JS laster GA-skriptene kun når samtykke er
+  «accepted» (`loadGa = ready && consent === "accepted"`).
+- Samtykke lagres lokalt i nettleseren under nøkkelen
+  `forerkortguiden:analytics-consent` (`accepted`/`rejected`); avvis lar hele
+  siden fungere normalt. Consent Mode: `analytics_storage` denied → granted.
+- next/script dedupliserer GA på id (ingen dobbeltlasting ved klientnavigasjon).
+- Banneret er fast i bunnen, mobilvennlig, uten horisontal overflow, med synlige
+  fokusstiler; skjult i print. Runtime-flyten (banner vises, Avvis/Godta/Endre
+  analysevalg, GA lastes én gang, ingen konsoll-/hydreringsfeil, mobil uten
+  overflow) er verifisert interaktivt mot lokal prod-bygg av samme commit.
+- /personvern forklarer valgfri GA, cookies først etter samtykke, lokalt lagret
+  valg, at man kan avvise og bruke siden normalt, at sjekklister bruker
+  localStorage, og har en «Endre analysevalg»-knapp. Den tidligere formuleringen
+  «ingen besøksstatistikk» er fjernet.
 
 ## 2. Delvis dekket
 
-- **Favicons:** SVG-ikon fungerer i moderne nettlesere (`/icon.svg`, lenket i head),
-  men `favicon.ico`-fallback og `apple-touch-icon` mangler (404). Konsekvens: eldre
-  nettlesere og iOS «legg til på hjemskjerm» får ikke ikon. Ikke blokkerende.
 - **Core Web Vitals:** rask etter alle praktiske målinger, men Lighthouse/felt-data
   er ikke kjørt (verktøyet var ikke tilgjengelig lokalt). Bør måles etter lansering.
 - **Schema-validitet:** JSON-LD er bygget etter schema.org-typene og er ærlig, men
   er ikke kjørt gjennom Googles Rich Results-test. Antas gyldig; bør bekreftes.
-- **Interaktiv test på live domene:** verktøy/meny/localStorage er verifisert
-  interaktivt mot lokal produksjonsbygg av samme commit og alle JS-chunks laster i
-  produksjon, men et menneskelig klikk gjennom på selve domenet gjenstår.
+- **Interaktiv test på live domene:** verktøy/meny/localStorage og samtykkebanneret
+  er verifisert interaktivt mot lokal produksjonsbygg av samme commit, og deployet
+  JS i produksjon inneholder identisk logikk (bekreftet ved å inspisere klient-
+  bundelen). Et menneskelig klikk-gjennom på selve domenet gjenstår fordi
+  automatisert nettleser mot eksternt domene ikke var tilgjengelig i økten.
+
+**Ikoner (nå dekket):** `favicon.ico` (16+32 px) og `apple-touch-icon` (180×180)
+er lagt til (commit `d8f32ef`) og svarer 200 i produksjon, sammen med `icon.svg`.
 
 ## 3. Ikke relevant for MVP (bevisst utelatt, i tråd med brief)
 
 - Monetisering, partnerbokser med reelt innhold, /go-ruter
 - Trafikkskoleregister, lokale SEO-sider, sponsede profiler
-- Analyse/statistikk (kan legges til senere; /personvern må da oppdateres først)
 - Engelsk språkversjon, innlogging/konto, database
 - Truckførerbevis-/maskinførerbevis-seksjoner utover oversiktsguiden
 - Blogg/nyhetsstrøm (PRD beskriver innholdsvekst som fase 2+)
@@ -78,12 +96,13 @@ som grunnlag (ikke gjenskapt, jf. instruks).
 ## 4. Manuelle oppgaver som gjenstår
 
 1. Google Search Console: registrer eiendom, send inn sitemap.xml
-2. Klikk gjennom verktøyene og mobilmenyen på en fysisk mobil mot live domene
+2. Klikk gjennom verktøyene, mobilmenyen og samtykkebanneret på en fysisk mobil
+   mot live domene; bekreft i Nettverk-fanen at `gtag/js` ikke lastes før «Godta»
+   og at GA registrerer treff i sanntidsrapporten etter samtykke
 3. Test delingsbilde i OG-debugger (opengraph.xyz e.l.)
 4. Valider et par sider i Googles Rich Results-test
 5. Kjør Lighthouse mot produksjon (mobil + desktop)
-6. Vurder å legge til apple-touch-icon/favicon.ico i neste vedlikeholdsrunde
-7. Årlig/halvårlig: revider gebyrsatser og regelendringer per FACT_CHECK_NOTES.md,
+6. Årlig/halvårlig: revider gebyrsatser og regelendringer per FACT_CHECK_NOTES.md,
    oppdater CONTENT_UPDATED i lib/constants.ts
 
 ## 5. Reelle blokkere
