@@ -1515,6 +1515,69 @@ hr {
   margin: 0.5rem 0 0;
 }
 
+/* ---------- Samtykkebanner ---------- */
+
+.consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -1px 3px rgba(28, 39, 51, 0.06);
+}
+
+.consent__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.consent__text {
+  max-width: 46rem;
+}
+
+.consent__lead {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+
+.consent__link {
+  margin: 0.3rem 0 0;
+  font-size: 0.8125rem;
+}
+
+.consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.consent__actions .btn {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+@media (min-width: 720px) {
+  .consent__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .consent__actions {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+  }
+  .consent__actions .btn {
+    flex: 0 0 auto;
+  }
+}
+
 /* ---------- Print ---------- */
 
 @media print {
@@ -1523,6 +1586,7 @@ hr {
   .breadcrumbs,
   .menu-toggle,
   .mobile-nav,
+  .consent,
   .no-print {
     display: none !important;
   }

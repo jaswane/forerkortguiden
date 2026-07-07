@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AnalyticsConsent } from "@/components/analytics/AnalyticsConsent";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Footer />
         <JsonLd data={websiteSchema()} />
         <JsonLd data={organizationSchema()} />
+        <AnalyticsConsent />
       </body>
     </html>
   );
